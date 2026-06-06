@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Form</title>
+
+        <style>
+            .save-btn{
+                background-color: green;
+                color:white;
+                width:100%;
+                padding:8px;
+                border:none;
+            }
+            .delete-btn{
+                background-color: red;
+                color:white;
+                border:none;
+                padding:5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>STUDENT FORM</h1>
+
+        <table border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id ="name"></td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td><input type="number" id ="age"></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" value="Male" checked>Male
+                    <input type="radio" name="gender" value="Female" checked>Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="course">
+                        <option>Javascript</option>
+                        <option>Python</option>
+                        <option>Java</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="email" id="email">
+                </td>
+            </tr>
+           
+            <tr>
+                <td colspan="2">
+                    <button type="button" onclick="saveStudent()" class="save-btn">Save</button>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <table border="1" id="StudentTable">
+            <tr>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>COURSE</th>
+                <th>GENDER</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+            </tr>
+        </table>
+
+        <script>
+            function saveStudent()
+            {
+                var name = document.getElementById("name").value;
+                var age = document.getElementById("age").value;
+                var course = document.getElementById("course").value;
+                var email = document.getElementById("email").value;
+
+                var gender = document.querySelector("input[name='gender']:checked").value;
+                var table = document.getElementById("StudentTable");
+
+                var row = table.insertRow(-1);
+                row.insertCell(0).innerHTML = name;
+                row.insertCell(1).innerHTML = age;
+                row.insertCell(2).innerHTML = course;
+                row.insertCell(3).innerHTML = gender;
+                row.insertCell(4).innerHTML = email;
+
+                row.insertCell(5).innerHTML = "<button class ='delete-btn'onclick='deleteRow(this)'>Delete</button>";              
+            }
+
+            function deleteRow(button){
+                button.parentElement.parentElement.remove();
+            }
+        </script>
+
+
+
+    </body>
+</html>
